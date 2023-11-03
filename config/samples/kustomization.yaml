@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- brgo_v1alpha1_synctarget.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

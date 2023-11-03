@@ -1,0 +1,27 @@
+# permissions for end users to view synctargets.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: synctarget-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: brgo-cd-crds
+    app.kubernetes.io/part-of: brgo-cd-crds
+    app.kubernetes.io/managed-by: kustomize
+  name: synctarget-viewer-role
+rules:
+- apiGroups:
+  - brgo.jdvgh.com
+  resources:
+  - synctargets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - brgo.jdvgh.com
+  resources:
+  - synctargets/status
+  verbs:
+  - get
