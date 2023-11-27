@@ -48,20 +48,20 @@ type SyncTargetReconciler struct {
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.16.0/pkg/reconcile
 func (r *SyncTargetReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-    logCtx := log.FromContext(ctx)
+	logCtx := log.FromContext(ctx)
 
 	// TODO(user): your logic here
 
-	var syncTargetInfo  brgov1alpha1.SyncTarget 
+	var syncTargetInfo brgov1alpha1.SyncTarget
 
 	if err := r.Get(ctx, req.NamespacedName, &syncTargetInfo); err != nil {
 		if client.IgnoreNotFound(err) != nil {
-			logCtx.Error(err,"unable to get ApplicationSet: '%v' ", err)
+			logCtx.Error(err, "unable to get SyncTarget: '%v' ", err)
 		}
 		return ctrl.Result{}, client.IgnoreNotFound(err)
 	}
 
-    fmt.Printf("syncTarget: repo %s, path %s\n", syncTargetInfo.Spec.RepoUrl, syncTargetInfo.Spec.Path)
+	fmt.Printf("syncTarget: repo %s, path %s\n", syncTargetInfo.Spec.RepoUrl, syncTargetInfo.Spec.Path)
 
 	return ctrl.Result{}, nil
 }

@@ -1,4 +1,29 @@
 # brgo-cd-crds
+If you are editing the API definitions, generate the manifests such as CRs or CRDs using:
+
+```sh
+make manifests
+```
+Install CRDs into current kubeconfig cluster
+```bash
+make install
+kubectl apply -k config/samples/
+```
+
+Local controller:
+```bash
+make run
+```
+
+k8s controller:
+```bash
+
+make docker-buildx IMG=jdvghdckrhb/brgo-cd-sync-target:0.0.0-alpha-arm
+make docker-push --platform linux/arm64 IMG=jdvghdckrhb/brgo-cd-sync-target:0.0.0-alpha-arm
+make deploy IMG=jdvghdckrhb/brgo-cd-sync-target:0.0.0-alpha-arm 
+```
+---
+# Mostly default docs
 // TODO(user): Add simple overview of use/purpose
 
 ## Description
